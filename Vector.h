@@ -8,16 +8,21 @@ class Vector{
 
         double getX();
         double getY();
-        double getZ;
+        double getZ();
+
+        void setX(double newComponent);
+        void setY(double newComponent);
+        void setZ(double newComponent);
 
         double dotProduct(Vector& other) const;
         Vector crossProduct(Vector& other) const;
-        Vector scale(double k) const;
         double magnitude() const;
-        Vector add(Vector& other) const;
-        Vector subtract(Vector& other) const;
+
+        Vector operator+(Vector& other) const;
+        Vector operator-(Vector& other) const;
+        Vector operator*(double k) const;
 
     private:
-        double x, y, z;
+        double xComponent, yComponent, zComponent;
 };
 #endif
