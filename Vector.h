@@ -1,28 +1,22 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-class Vector{
-    public:
-        Vector(double xVal = 0, double yVal = 0, double zVal = 0);
-        ~Vector();
-
-        double getX();
-        double getY();
-        double getZ();
-
-        void setX(double newComponent);
-        void setY(double newComponent);
-        void setZ(double newComponent);
+struct Vector{
+        double xComponent, yComponent, zComponent;
+        Vector(double x = 0, double y = 0, double z = 0): xComponent(x), yComponent(y), zComponent(z) {};
 
         double dotProduct(Vector& other) const;
         Vector crossProduct(Vector& other) const;
         double magnitude() const;
 
-        Vector operator+(Vector& other) const;
-        Vector operator-(Vector& other) const;
-        Vector operator*(double k) const;
+        Vector normalize() const;
+        Vector reflect() const;
 
-    private:
-        double xComponent, yComponent, zComponent;
+        Vector operator+(const Vector& other) const;
+        Vector operator-(const Vector& other) const;
+        Vector operator*(double k) const;
+        Vector operator/(double k) const;
+        Vector& operator+=(const Vector& other);
+        Vector& operator-=(const Vector& other);
 };
 #endif
