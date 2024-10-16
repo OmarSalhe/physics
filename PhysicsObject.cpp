@@ -5,16 +5,6 @@
 PhysicsObject::PhysicsObject(double m, Vector pos, Vector vel, Vector acc, Vector net): mass(mass), position(pos), velocity(vel), acceleration(acc), netForce(net){}
 PhysicsObject::~PhysicsObject(){}
 
-Vector PhysicsObject::getPosition() const{
-    return position;
-}
-Vector PhysicsObject::getVelocity() const{
-    return velocity;
-}
-Vector PhysicsObject::getAcceleration() const{
-    return acceleration;
-}
-
 void PhysicsObject::updatePosition(){
 updateVelocity();
 
@@ -52,12 +42,12 @@ double PhysicsObject::distanceTo(PhysicsObject& other) const{
 void PhysicsObject::updateVelocity(){
     updateAcceleration();
     double h = .001;
-    
     velocity += (acceleration) * h;
 }
 
 void PhysicsObject::updateAcceleration(){
     clearForce();
+    // calculateForce();
 }
 
 void PhysicsObject::clearForce(){
