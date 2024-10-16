@@ -7,7 +7,7 @@ Vector:: ~Vector(){}
 
 // Dot Product: The magnitude of vector A's projection over vector B
 // <a1, a2, a3> * <b1, b2, b3> = (a1 * b1) + (a2 * b2) + (a3 * b3)
-double Vector::dotProduct(Vector& other) const{
+double Vector::dotProduct(const Vector& other) const{
     double b1 = other.xComponent;
     double b2 = other.yComponent;
     double b3 = other.zComponent;
@@ -17,7 +17,7 @@ double Vector::dotProduct(Vector& other) const{
 
 // Cross Product: A vector orthogonal to both vector A and B
 // <a1, a2, a3> x <b1, b2, b3> = <(a2*b3)-(a3*b2), -((a1*b3)-(a3*b1)), (a1*b2)-(a2*b1)>
-Vector Vector::crossProduct(Vector& other) const{
+Vector Vector::crossProduct(const Vector& other) const{
     double b1 = other.xComponent;
     double b2 = other.yComponent; 
     double b3 = other.zComponent;
@@ -40,7 +40,10 @@ double Vector::magnitude() const{
 
 Vector Vector::normalize() const{
     double norm = magnitude();
-    return (norm == 0)? throw std::runtime_error("Cannot normalize a vector of length 0") : *this / norm;
+    if(norm == 0){
+        throw std::runtime_error("Cannot normalize a vector of length 0");
+    }
+    return *this / norm;
 }
 
 
@@ -54,7 +57,7 @@ Vector Vector::operator*(double k) const{
 
 Vector Vector::operator/(double k) const{
     if(k == 0){
-        std::invalid_argument("Division by zero");
+        throw std::invalid_argument("Division by zero");
     }
     return Vector(xComponent / k,
                   yComponent / k,
